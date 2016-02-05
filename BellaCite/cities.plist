@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Hong Kong</string>
+		<key>imageName</key>
+		<string>test1.jpg</string>
+		<key>ratingCount</key>
+		<integer>301</integer>
+		<key>isLiked</key>
+		<true/>
+		<key>landmarks</key>
+		<array>
+			<string>Harbor</string>
+			<string>sea</string>
+			<string>downtown</string>
+			<string>Opera House</string>
+			<string>market</string>
+			<string>Port</string>
+			<string>Financial District</string>
+			<string>Sailing Club</string>
+			<string>Kick Boxing club</string>
+			<string>Cornish</string>
+			<string>University of Hong Kong</string>
+		</array>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Praha</string>
+		<key>imageName</key>
+		<string>Italy.jpg</string>
+		<key>ratingCount</key>
+		<real>1099</real>
+		<key>isLiked</key>
+		<false/>
+		<key>landmarks</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Vatican</string>
+		<key>imageName</key>
+		<string>IMG1.jpg</string>
+		<key>ratingCount</key>
+		<integer>150</integer>
+		<key>isLiked</key>
+		<false/>
+		<key>landmarks</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Rome</string>
+		<key>imageName</key>
+		<string>IMG2.jpg</string>
+		<key>ratingCount</key>
+		<integer>501</integer>
+		<key>isLiked</key>
+		<true/>
+		<key>landmarks</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Milan</string>
+		<key>imageName</key>
+		<string>IMG3.jpg</string>
+		<key>ratingCount</key>
+		<integer>301</integer>
+		<key>isLiked</key>
+		<false/>
+		<key>landmarks</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Loire Valley france intaly beiruth lebanon, hjbwodil kljdjklbcn </string>
+		<key>imageName</key>
+		<string>P1.jpg</string>
+		<key>ratingCount</key>
+		<real>999000</real>
+		<key>isLiked</key>
+		<false/>
+		<key>landmarks</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>San Francisco</string>
+		<key>imageName</key>
+		<string>goldengatebridge.png</string>
+		<key>ratingCount</key>
+		<real>5000</real>
+		<key>isLiked</key>
+		<true/>
+		<key>landmarks</key>
+		<array/>
+	</dict>
+</array>
+</plist>
