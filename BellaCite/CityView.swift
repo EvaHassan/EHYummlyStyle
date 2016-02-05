@@ -45,6 +45,7 @@ class CityView: UIView {
         }
     }
     
+    //MARK: Initializations
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
@@ -65,7 +66,7 @@ class CityView: UIView {
         likeButton.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         configureTableView()
     }
-    
+
     func configureTableView() {
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "landmark")
         tableView.rowHeight = 40.0
@@ -74,6 +75,7 @@ class CityView: UIView {
         tableView.delegate = self
     }
     
+    //MARK: IBActions and Gestures
     @IBAction func buttonPressed(sender: AnyObject) {
         updateCity()
         animateLikeButtonChanges()
@@ -88,6 +90,8 @@ class CityView: UIView {
         city.isLiked = !city.isLiked
     }
     
+    
+    //MARK: Animations and Effects
     func animateLikeButtonChanges() {
         guard let city = city else {
             return
@@ -139,14 +143,13 @@ class CityView: UIView {
         UIView.commitAnimations()
     }
 
-
 }
 
 
 
 
 extension CityView: UITableViewDataSource {
-    
+  //MARK: TabelView Data Source
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return (city?.landmarks.count ?? 0) > 0 ? 1 : 0
     }
@@ -195,6 +198,6 @@ extension CityView: UITableViewDataSource {
 }
 
 extension CityView: UITableViewDelegate {
-    
+    //MARK: TabelView Delegate
 }
 
