@@ -131,10 +131,14 @@ class CityView: UIView {
     }
     func openSlider() {
         self.layoutIfNeeded()
-        UIView.animateWithDuration(0.3) { () -> Void in
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.imageContainer_trailingMargin.constant = self.bounds.width/2
-            self.applyGradientAndDimmingToView(self.dimmingView)
+            self.dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
             self.layoutIfNeeded()
+            }) { (finished) -> Void in
+                if finished {
+                    self.applyGradientToView(self.dimmingView)
+                }
         }
     }
     
@@ -159,21 +163,17 @@ class CityView: UIView {
     
     
     //TODO: clean it and add more color and locations to aide in the animation with the pan gesture
-    func applyGradientAndDimmingToView(aView: UIView) {
+    func applyGradientToView(aView: UIView) {
         if let gradient = self.gradient {
             gradient.removeFromSuperlayer()
         }
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds//aView.bounds
         gradient.colors = [ UIColor(white: 0.0, alpha: 0.0).CGColor, UIColor(white: 0.0, alpha: 0.7).CGColor]
-        
         gradient.startPoint = CGPointMake(0.25, 1.0)
         gradient.endPoint = CGPointMake(0.5, 1.0)
         aView.layer.addSublayer(gradient)
         self.gradient = gradient
-        
-        // dimm
-        aView.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
     }
     
     func animateFontSizeChange(small: Bool) {
