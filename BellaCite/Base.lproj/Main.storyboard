@@ -80,8 +80,8 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="yX4-sb-4uu"/>
                                         <exclude reference="jjX-3s-IJX"/>
+                                        <exclude reference="yX4-sb-4uu"/>
                                     </mask>
                                 </variation>
                             </view>

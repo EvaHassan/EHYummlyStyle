@@ -110,25 +110,26 @@ class CityView: UIView {
             self.layoutIfNeeded()
             }, completion: { (finished) in
                 if newConstant != 0 {
-                   self.applyGradientToView(self.dimmingView)
-                    
+                   self.applyGradientAndDimmingToView(self.dimmingView)
                 }
         })
         animateFontSizeChange(newConstant != 0)
     }
     
     
-    func applyGradientToView(aView: UIView) {
+    func applyGradientAndDimmingToView(aView: UIView) {
         if let gradient = self.gradient {
             gradient.removeFromSuperlayer()
         }
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds//aView.bounds
         gradient.colors = [ UIColor(white: 0.0, alpha: 0.0).CGColor, UIColor(white: 0.0, alpha: 0.7).CGColor]
-        gradient.startPoint = CGPointMake(0.0, 1.0)
+        gradient.startPoint = CGPointMake(0.25, 1.0)
         gradient.endPoint = CGPointMake(0.5, 1.0)
         aView.layer.addSublayer(gradient)
         self.gradient = gradient
+        
+        // dimm
         aView.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
     }
     

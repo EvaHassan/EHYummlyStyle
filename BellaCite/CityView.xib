@@ -6,7 +6,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CityView" customModule="MyDailyPractice" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CityView" customModule="BellaCite" customModuleProvider="target">
             <connections>
                 <outlet property="dimmingView" destination="nA3-YY-i5P" id="eZJ-Wb-DOg"/>
                 <outlet property="imageContainer_trailingMargin" destination="kwU-Vh-z2b" id="xUj-Fx-A5q"/>
@@ -57,7 +57,7 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqp-Wq-y7J" customClass="CustomLikeButton" customModule="MyDailyPractice" customModuleProvider="target">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqp-Wq-y7J" customClass="CustomLikeButton" customModule="BellaCite" customModuleProvider="target">
                             <rect key="frame" x="536" y="541" width="44" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="Q3k-Rk-v2p"/>
@@ -66,7 +66,7 @@
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="nA3-YY-i5P" secondAttribute="bottom" id="4oW-7t-kJt"/>
                         <constraint firstAttribute="bottom" secondItem="LS6-63-JAL" secondAttribute="bottom" constant="25" id="5d6-TA-0p1"/>
