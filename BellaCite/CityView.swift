@@ -12,21 +12,15 @@ class CityView: UIView {
     let BACKGROUNDGRAY = UIColor(red: 245.0/255, green: 245.0/255, blue: 245.0/255, alpha: 1.0)
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var imageContainer_trailingMargin: NSLayoutConstraint!
     @IBOutlet weak var imageView_centerY: NSLayoutConstraint!
-    
-    
-    
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var dimmingView: UIView!
-    
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var likeButton: CustomLikeButton!
-    
     @IBOutlet var view: UIView!
+    @IBOutlet weak var showTableButton: UIButton!
+    @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     var gradient: CAGradientLayer?
     
@@ -82,6 +76,32 @@ class CityView: UIView {
         
     }
     
+    var previousPoint = CGPointZero
+    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
+        let translation = sender.translationInView(dimmingView)
+        switch(sender.state) {
+        case .Began:
+            showTableButton.enabled = false
+            previousPoint = translation
+            break
+        case .Changed:
+            updateSlider(translation)
+            previousPoint = translation
+            break
+        case .Ended, .Failed, .Cancelled:
+            if imageContainer_trailingMargin.constant > bounds.width/4  &&
+                imageContainer_trailingMargin.constant <= bounds.width/2 {
+                openSlider()
+            } else  {
+                closeSlider()
+            }
+            break
+        default:
+            break
+        }
+    }
+    
+    
     func updateCity() {
         guard let city = city else {
             return
@@ -92,6 +112,35 @@ class CityView: UIView {
     
     
     //MARK: Animations and Effects
+    func updateSlider(change: CGPoint) {
+        print(change, bounds.width/2 )
+        if change.x <= 0 {
+            imageContainer_trailingMargin.constant =  min(bounds.width/2, imageContainer_trailingMargin.constant - (change.x - previousPoint.x))
+        } else if change.x > 0  && imageContainer_trailingMargin.constant > 0 {
+            imageContainer_trailingMargin.constant = max(0, imageContainer_trailingMargin.constant - (change.x - previousPoint.x))
+        }
+        print(imageContainer_trailingMargin.constant )
+        
+    }
+    
+    func closeSlider() {
+        self.layoutIfNeeded()
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.imageContainer_trailingMargin.constant = 0
+            self.gradient?.removeFromSuperlayer()
+            self.dimmingView.backgroundColor = UIColor.clearColor()
+            self.layoutIfNeeded()
+        }
+    }
+    func openSlider() {
+        self.layoutIfNeeded()
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.imageContainer_trailingMargin.constant = self.bounds.width/2
+            self.applyGradientAndDimmingToView(self.dimmingView)
+            self.layoutIfNeeded()
+        }
+    }
+    
     func animateLikeButtonChanges() {
         guard let city = city else {
             return
@@ -101,26 +150,18 @@ class CityView: UIView {
     }
     
     func showHideTableView() {
-        var newConstant: CGFloat = bounds.width/2
-        if imageContainer_trailingMargin.constant > 0 {
-            newConstant = 0
-            self.gradient?.removeFromSuperlayer()
-            self.dimmingView.backgroundColor = UIColor.clearColor()
+        var newConstant: CGFloat = 0
+        if self.imageContainer_trailingMargin.constant == 0 {
+            openSlider()
+            newConstant = bounds.width/2
+        } else {
+            closeSlider()
         }
-        layoutIfNeeded()
-        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
-            self.imageContainer_trailingMargin.constant = newConstant
-            self.likeButton.alpha = (newConstant == 0) ? 1.0 : 0.0
-            self.layoutIfNeeded()
-            }, completion: { (finished) in
-                if newConstant != 0 {
-                   self.applyGradientAndDimmingToView(self.dimmingView)
-                }
-        })
         animateFontSizeChange(newConstant != 0)
     }
     
     
+    //TODO: clean it and add more color and locations to aide in the animation with the pan gesture
     func applyGradientAndDimmingToView(aView: UIView) {
         if let gradient = self.gradient {
             gradient.removeFromSuperlayer()
@@ -128,6 +169,7 @@ class CityView: UIView {
         let gradient = CAGradientLayer()
         gradient.frame = self.bounds//aView.bounds
         gradient.colors = [ UIColor(white: 0.0, alpha: 0.0).CGColor, UIColor(white: 0.0, alpha: 0.7).CGColor]
+        
         gradient.startPoint = CGPointMake(0.25, 1.0)
         gradient.endPoint = CGPointMake(0.5, 1.0)
         aView.layer.addSublayer(gradient)
@@ -145,7 +187,15 @@ class CityView: UIView {
 
 }
 
-
+extension CityView: UIGestureRecognizerDelegate {
+    //MARK: Gesture Recognizer Delegate
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    
+}
 
 
 extension CityView: UITableViewDataSource {
