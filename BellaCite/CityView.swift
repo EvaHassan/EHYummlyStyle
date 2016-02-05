@@ -113,14 +113,11 @@ class CityView: UIView {
     
     //MARK: Animations and Effects
     func updateSlider(change: CGPoint) {
-        print(change, bounds.width/2 )
         if change.x <= 0 {
             imageContainer_trailingMargin.constant =  min(bounds.width/2, imageContainer_trailingMargin.constant - (change.x - previousPoint.x))
         } else if change.x > 0  && imageContainer_trailingMargin.constant > 0 {
             imageContainer_trailingMargin.constant = max(0, imageContainer_trailingMargin.constant - (change.x - previousPoint.x))
         }
-        print(imageContainer_trailingMargin.constant )
-        
     }
     
     func closeSlider() {
