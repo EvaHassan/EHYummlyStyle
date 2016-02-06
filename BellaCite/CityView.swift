@@ -102,6 +102,7 @@ class CityView: UIView {
     @IBAction func handleTapToCloseSlider(sender: UITapGestureRecognizer) {
         closeSlider()
         touchView.removeGestureRecognizer(sender)
+        print("*********")
     }
     
     
@@ -178,7 +179,7 @@ class CityView: UIView {
     
     func closeSlider() {
         self.layoutIfNeeded()
-        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.25, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.imageContainer_trailingMargin.constant = 0
             self.dimmingView.alpha = 0.0
             self.likeButton.alpha = 1.0
@@ -193,7 +194,7 @@ class CityView: UIView {
     }
     func openSlider() {
         self.layoutIfNeeded()
-        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.25, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.imageContainer_trailingMargin.constant = self.bounds.width/2
             self.dimmingView.alpha = 1.0
             self.likeButton.alpha = 0.0
