@@ -53,8 +53,13 @@
                                     <exclude reference="KUB-ig-mIv"/>
                                 </mask>
                             </variation>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUM-8p-MTa">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <connections>
-                                <outletCollection property="gestureRecognizers" destination="xrI-4k-kAz" appends="YES" id="siv-4O-iIv"/>
+                                <outletCollection property="gestureRecognizers" destination="xrI-4k-kAz" appends="YES" id="Ci6-Un-XB9"/>
                             </connections>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LS6-63-JAL">
@@ -92,8 +97,12 @@
             <constraints>
                 <constraint firstItem="pvX-WI-Fks" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2iu-1R-Fhb"/>
                 <constraint firstItem="8fj-gZ-urN" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5:1" id="7he-S7-Vos"/>
+                <constraint firstItem="rUM-8p-MTa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CFX-Vr-2Ww"/>
+                <constraint firstItem="rUM-8p-MTa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DRY-rB-Nnz"/>
                 <constraint firstItem="8fj-gZ-urN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RIi-wh-5a4"/>
                 <constraint firstAttribute="trailing" secondItem="8fj-gZ-urN" secondAttribute="trailing" id="RvP-5X-iRi"/>
+                <constraint firstAttribute="trailing" secondItem="rUM-8p-MTa" secondAttribute="trailing" id="VVC-83-9LO"/>
+                <constraint firstAttribute="bottom" secondItem="rUM-8p-MTa" secondAttribute="bottom" id="ZUk-f9-nz4"/>
                 <constraint firstAttribute="bottom" secondItem="8fj-gZ-urN" secondAttribute="bottom" id="gGb-cA-mOv"/>
                 <constraint firstAttribute="bottom" secondItem="pvX-WI-Fks" secondAttribute="bottom" id="kiK-xZ-ztR"/>
                 <constraint firstAttribute="trailing" secondItem="pvX-WI-Fks" secondAttribute="trailing" id="kwU-Vh-z2b"/>

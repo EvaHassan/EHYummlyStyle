@@ -59,6 +59,8 @@ class CityView: UIView {
         self.addSubview(newView)
         likeButton.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         configureTableView()
+        applyGradientToView(dimmingView)
+        dimmingView.alpha = 0.0
     }
 
     func configureTableView() {
@@ -118,14 +120,14 @@ class CityView: UIView {
         } else if change.x > 0  && imageContainer_trailingMargin.constant > 0 {
             imageContainer_trailingMargin.constant = max(0, imageContainer_trailingMargin.constant - (change.x - previousPoint.x))
         }
+        dimmingView.alpha = imageContainer_trailingMargin.constant / (bounds.width/2)
     }
     
     func closeSlider() {
         self.layoutIfNeeded()
         UIView.animateWithDuration(0.3) { () -> Void in
             self.imageContainer_trailingMargin.constant = 0
-            self.gradient?.removeFromSuperlayer()
-            self.dimmingView.backgroundColor = UIColor.clearColor()
+            self.dimmingView.alpha = 0.0
             self.layoutIfNeeded()
         }
     }
@@ -133,7 +135,7 @@ class CityView: UIView {
         self.layoutIfNeeded()
         UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.imageContainer_trailingMargin.constant = self.bounds.width/2
-            self.dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
+            self.dimmingView.alpha = 1.0
             self.layoutIfNeeded()
             }) { (finished) -> Void in
                 if finished {
@@ -162,18 +164,18 @@ class CityView: UIView {
     }
     
     
-    //TODO: clean it and add more color and locations to aide in the animation with the pan gesture
     func applyGradientToView(aView: UIView) {
         if let gradient = self.gradient {
             gradient.removeFromSuperlayer()
         }
         let gradient = CAGradientLayer()
-        gradient.frame = self.bounds//aView.bounds
+        gradient.frame = self.bounds
         gradient.colors = [ UIColor(white: 0.0, alpha: 0.0).CGColor, UIColor(white: 0.0, alpha: 0.7).CGColor]
         gradient.startPoint = CGPointMake(0.25, 1.0)
         gradient.endPoint = CGPointMake(0.5, 1.0)
         aView.layer.addSublayer(gradient)
         self.gradient = gradient
+        self.dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
     }
     
     func animateFontSizeChange(small: Bool) {
