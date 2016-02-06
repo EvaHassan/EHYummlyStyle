@@ -18,6 +18,7 @@
                 <outlet property="panGestureRecognizer" destination="xrI-4k-kAz" id="igP-Xh-MVh"/>
                 <outlet property="showTableButton" destination="ihU-Sa-w8x" id="iHu-6b-Rqg"/>
                 <outlet property="tableView" destination="8fj-gZ-urN" id="ddf-db-AwR"/>
+                <outlet property="touchView" destination="rUM-8p-MTa" id="4oe-6A-srR"/>
                 <outlet property="view" destination="iN0-l3-epB" id="KYH-l3-B6F"/>
             </connections>
         </placeholder>
@@ -51,10 +52,12 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="1600" id="B9s-Ou-HQW"/>
                                 <constraint firstAttribute="height" constant="200" id="KUB-ig-mIv"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
+                                    <exclude reference="B9s-Ou-HQW"/>
                                     <exclude reference="KUB-ig-mIv"/>
                                 </mask>
                             </variation>
@@ -84,8 +87,10 @@
                     </subviews>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="nA3-YY-i5P" secondAttribute="bottom" id="3Ph-QK-h0o"/>
                         <constraint firstAttribute="bottom" secondItem="nA3-YY-i5P" secondAttribute="bottom" id="4oW-7t-kJt"/>
                         <constraint firstAttribute="bottom" secondItem="LS6-63-JAL" secondAttribute="bottom" constant="25" id="5d6-TA-0p1"/>
+                        <constraint firstItem="nA3-YY-i5P" firstAttribute="centerY" secondItem="pvX-WI-Fks" secondAttribute="centerY" id="BYk-pk-uSh"/>
                         <constraint firstItem="LS6-63-JAL" firstAttribute="leading" secondItem="pvX-WI-Fks" secondAttribute="leading" constant="15" id="EsB-EV-Qgw"/>
                         <constraint firstAttribute="bottom" secondItem="lqp-Wq-y7J" secondAttribute="bottom" constant="15" id="LOh-s5-lle"/>
                         <constraint firstItem="lqp-Wq-y7J" firstAttribute="leading" secondItem="LS6-63-JAL" secondAttribute="trailing" constant="15" id="LUe-I9-Jzm"/>
@@ -96,9 +101,13 @@
                         <constraint firstAttribute="trailing" secondItem="nA3-YY-i5P" secondAttribute="trailing" id="eUj-nw-Hos"/>
                         <constraint firstAttribute="trailing" secondItem="nA3-YY-i5P" secondAttribute="trailing" id="hds-7j-jRE"/>
                         <constraint firstAttribute="trailing" secondItem="lqp-Wq-y7J" secondAttribute="trailing" constant="20" id="nMu-AQ-Thg"/>
+                        <constraint firstItem="nA3-YY-i5P" firstAttribute="top" secondItem="pvX-WI-Fks" secondAttribute="top" id="qBP-4X-r3Z"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
+                            <exclude reference="4oW-7t-kJt"/>
+                            <exclude reference="BYk-pk-uSh"/>
+                            <exclude reference="bGF-fD-G1r"/>
                             <exclude reference="hds-7j-jRE"/>
                         </mask>
                     </variation>

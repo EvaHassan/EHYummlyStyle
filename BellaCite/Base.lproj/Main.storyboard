@@ -37,14 +37,6 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJw-Ny-NYw" userLabel="top masking View">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Jp-K2-RZy" userLabel="bottom masking View">
-                                <rect key="frame" x="0.0" y="398" width="600" height="138"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crk-Jf-2jz">
                                 <rect key="frame" x="-630" y="0.0" width="1230" height="54"/>
                                 <subviews>
@@ -148,7 +140,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="4Q4-p7-d50" customClass="CollectionCell" customModule="BellaCite" customModuleProvider="target">
+                                    <collectionViewCell multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="4Q4-p7-d50" customClass="CollectionCell" customModule="BellaCite" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="30" width="600" height="270"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -251,6 +243,22 @@
                                     <constraint firstItem="rXt-hp-kpW" firstAttribute="leading" secondItem="Avi-He-F2U" secondAttribute="trailing" constant="4" id="tMk-sm-UIF"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJw-Ny-NYw" userLabel="top masking View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="98"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kcN-fd-cFj" appends="YES" id="6Vr-v9-T4j"/>
+                                </connections>
+                            </view>
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Jp-K2-RZy" userLabel="bottom masking View">
+                                <rect key="frame" x="0.0" y="368" width="600" height="168"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="6vA-sE-3OA" appends="YES" id="EyE-sx-Pjl"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -260,7 +268,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="crk-Jf-2jz" secondAttribute="trailing" constant="-20" id="AB5-Ls-DGA"/>
                             <constraint firstItem="VJw-Ny-NYw" firstAttribute="leading" secondItem="deN-Ih-aBg" secondAttribute="leadingMargin" constant="-20" id="AHR-1Y-uiQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VJw-Ny-NYw" secondAttribute="trailing" constant="-20" id="E09-Rx-CB8"/>
-                            <constraint firstItem="kn0-4n-JMe" firstAttribute="top" secondItem="VJw-Ny-NYw" secondAttribute="bottom" constant="-30" id="GaK-8t-9un"/>
+                            <constraint firstItem="kn0-4n-JMe" firstAttribute="top" secondItem="VJw-Ny-NYw" secondAttribute="bottom" id="GaK-8t-9un"/>
                             <constraint firstItem="Cne-x0-36l" firstAttribute="top" secondItem="crk-Jf-2jz" secondAttribute="bottom" id="GkF-WJ-Mcl"/>
                             <constraint firstItem="VkB-Mf-Gdt" firstAttribute="top" secondItem="2xn-eP-6F3" secondAttribute="bottom" constant="5" id="Iky-0n-e7y"/>
                             <constraint firstItem="FGZ-1g-PHB" firstAttribute="width" secondItem="deN-Ih-aBg" secondAttribute="width" id="MlI-hd-gYM"/>
@@ -309,6 +317,16 @@
                 <tapGestureRecognizer id="7tB-JG-uV7">
                     <connections>
                         <action selector="handleTap:" destination="Hex-ox-KbU" id="C9O-oW-YzD"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="kcN-fd-cFj">
+                    <connections>
+                        <action selector="hideMaskViews:" destination="Hex-ox-KbU" id="FPy-jw-TQg"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="6vA-sE-3OA">
+                    <connections>
+                        <action selector="hideMaskViews:" destination="Hex-ox-KbU" id="M4y-RM-zyx"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

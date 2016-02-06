@@ -12,6 +12,7 @@ import UIKit
 protocol DisableCollectionViewScrolling {
     func collectionViewScrollingEnabled(scrollEnabled: Bool)
     func scrollCellToTop(cell: CollectionCell)
+    func shouldClearTopAndBottomMaskViews(clear: Bool)
 }
 
 class CityView: UIView {
@@ -22,6 +23,7 @@ class CityView: UIView {
     @IBOutlet weak var imageView_centerY: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var dimmingView: UIView!
+    @IBOutlet weak var touchView: UIView!
     @IBOutlet weak var bottomGradientDimmingView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var likeButton: CustomLikeButton!
@@ -96,6 +98,13 @@ class CityView: UIView {
     }
     
     //MARK: IBActions and Gestures
+    
+    @IBAction func handleTapToCloseSlider(sender: UITapGestureRecognizer) {
+        closeSlider()
+        touchView.removeGestureRecognizer(sender)
+    }
+    
+    
     @IBAction func buttonPressed(sender: AnyObject) {
         updateCity()
         animateLikeButtonChanges()
@@ -169,11 +178,17 @@ class CityView: UIView {
     
     func closeSlider() {
         self.layoutIfNeeded()
-        UIView.animateWithDuration(0.3) { () -> Void in
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.imageContainer_trailingMargin.constant = 0
             self.dimmingView.alpha = 0.0
             self.likeButton.alpha = 1.0
             self.layoutIfNeeded()
+            }) { (finished) -> Void in
+                if finished {
+                    if let listener = self.listener {
+                        listener.shouldClearTopAndBottomMaskViews(true)
+                    }
+                }
         }
     }
     func openSlider() {
@@ -186,8 +201,14 @@ class CityView: UIView {
             }) { (finished) -> Void in
                 if finished {
                     self.shouldScrollCellToTop(self.imageContainer_trailingMargin.constant == self.bounds.width/2)
+                    self.addTapGesture()
                 }
         }
+    }
+    
+    func addTapGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: "handleTapToCloseSlider:")
+        touchView.addGestureRecognizer(gesture)
     }
     
     func animateLikeButtonChanges() {

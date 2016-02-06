@@ -115,6 +115,16 @@ class CitiesViewController: UIViewController {
         animateButtonsUpAndHideSearchBar()
     }
     
+    @IBAction func hideMaskViews(sender: AnyObject) {
+        //initiate a slider close action in the cell. To determine which cell is currently being edited, do the following:
+        let point = CGPointMake(collectionView.bounds.width/2, collectionView.contentOffset.y)
+        if let indexPath = collectionView.indexPathForItemAtPoint(point){
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCell
+            cell.cityView.closeSlider()
+        }
+        
+    }
+    
   /*  // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -266,5 +276,10 @@ extension CitiesViewController: DisableCollectionViewScrolling {
         collectionView.scrollToItemAtIndexPath(indexpath!, atScrollPosition: .Top, animated: true)
         topMaskView.hidden = false
         bottomMaskView.hidden = false
+    }
+    
+    func shouldClearTopAndBottomMaskViews(clear: Bool) {
+        topMaskView.hidden = true
+        bottomMaskView.hidden = true
     }
 }
