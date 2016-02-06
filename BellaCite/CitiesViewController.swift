@@ -17,6 +17,8 @@ class CitiesViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var listButton: UIButton!
+    @IBOutlet weak var topMaskView: UIView!
+    @IBOutlet weak var bottomMaskView: UIView!
 
     
     var imageView : UIImageView?
@@ -29,6 +31,7 @@ class CitiesViewController: UIViewController {
         menuButton.fillViewWithMenuIcon()
         listButton.fillViewWithListIcon()
         setupSearchBar()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +62,15 @@ class CitiesViewController: UIViewController {
         size.width = view.bounds.width
         layout.itemSize = size
         collectionView.collectionViewLayout = layout
+        
+        // allow a fullcell size bottom insets in the collection to help scroll a cell with an open slider to the top
+        // of the visible rectangle
+    /*    var rect = self.collectionView.frame;
+        rect.size.height = rect.size.height + size.height;
+        self.collectionView.frame = rect;
+        var insets: UIEdgeInsets = collectionView.contentInset;
+        insets.bottom = size.height;
+        collectionView.contentInset = insets; */
         
     }
     
@@ -203,6 +215,7 @@ extension CitiesViewController: UICollectionViewDataSource {
         let city = Cities.sharedInstance.cities[indexPath.row]
     
         cell.cityView.city = city
+        cell.cityView.listener = self
         return cell
         
     }
@@ -240,5 +253,18 @@ extension CitiesViewController: UIScrollViewDelegate {
             }
         }
         
+    }
+}
+
+extension CitiesViewController: DisableCollectionViewScrolling {
+    func collectionViewScrollingEnabled(scrollEnabled: Bool) {
+        collectionView.scrollEnabled = scrollEnabled
+    }
+    
+    func scrollCellToTop(cell: CollectionCell) {
+        let indexpath = collectionView.indexPathForCell(cell)
+        collectionView.scrollToItemAtIndexPath(indexpath!, atScrollPosition: .Top, animated: true)
+        topMaskView.hidden = false
+        bottomMaskView.hidden = false
     }
 }

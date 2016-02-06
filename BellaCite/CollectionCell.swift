@@ -41,7 +41,7 @@ class CollectionCell: UICollectionViewCell {
  
     override func layoutSubviews() {
         super.layoutSubviews()
-        applyGradientToView(cityView.dimmingView)
+        applyGradientToView(cityView.bottomGradientDimmingView)
        
         
     } 

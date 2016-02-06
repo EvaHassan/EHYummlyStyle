@@ -8,6 +8,12 @@
 
 import UIKit
 
+
+protocol DisableCollectionViewScrolling {
+    func collectionViewScrollingEnabled(scrollEnabled: Bool)
+    func scrollCellToTop(cell: CollectionCell)
+}
+
 class CityView: UIView {
     let BACKGROUNDGRAY = UIColor(red: 245.0/255, green: 245.0/255, blue: 245.0/255, alpha: 1.0)
     
@@ -16,6 +22,7 @@ class CityView: UIView {
     @IBOutlet weak var imageView_centerY: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var dimmingView: UIView!
+    @IBOutlet weak var bottomGradientDimmingView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var likeButton: CustomLikeButton!
     @IBOutlet var view: UIView!
@@ -23,6 +30,7 @@ class CityView: UIView {
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     var gradient: CAGradientLayer?
+    var listener : DisableCollectionViewScrolling?
     
     var city: City?  {
         didSet {
@@ -34,7 +42,6 @@ class CityView: UIView {
                     imageView.image = image
                 }
                 tableView.reloadData()
-                
             }
         }
     }
@@ -51,6 +58,11 @@ class CityView: UIView {
         
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        applyGradientToView(dimmingView)
+    }
+    
     func loadViewFromNib() {
         let subviewsArray = NSBundle.mainBundle().loadNibNamed("CityView", owner: self, options: nil)
         let newView = subviewsArray[0] as! UIView
@@ -59,7 +71,6 @@ class CityView: UIView {
         self.addSubview(newView)
         likeButton.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         configureTableView()
-        applyGradientToView(dimmingView)
         dimmingView.alpha = 0.0
     }
 
@@ -69,6 +80,19 @@ class CityView: UIView {
         //
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    func applyGradientToView(aView: UIView) {
+        if let gradient = self.gradient {
+            gradient.removeFromSuperlayer()
+        }
+        let gradient = CAGradientLayer()
+        gradient.frame = self.bounds
+        gradient.colors = [ UIColor(white: 0.0, alpha: 0.0).CGColor, UIColor(white: 0.0, alpha: 0.7).CGColor]
+        gradient.startPoint = CGPointMake(0.25, 1.0)
+        gradient.endPoint = CGPointMake(0.5, 1.0)
+        aView.layer.addSublayer(gradient)
+        self.gradient = gradient
+        self.dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
     }
     
     //MARK: IBActions and Gestures
@@ -89,13 +113,16 @@ class CityView: UIView {
         case .Changed:
             updateSlider(translation)
             previousPoint = translation
+            shouldEnableCollectionScrollInListener(imageContainer_trailingMargin.constant == 0)
             break
         case .Ended, .Failed, .Cancelled:
             if imageContainer_trailingMargin.constant > bounds.width/4  &&
                 imageContainer_trailingMargin.constant <= bounds.width/2 {
                 openSlider()
+                    
             } else  {
                 closeSlider()
+                shouldEnableCollectionScrollInListener(true)
             }
             break
         default:
@@ -112,6 +139,22 @@ class CityView: UIView {
         city.isLiked = !city.isLiked
     }
     
+    func shouldEnableCollectionScrollInListener(collectionEnabled: Bool) {
+        if let listener = listener {
+           listener.collectionViewScrollingEnabled(collectionEnabled)
+        }
+    }
+    
+    func shouldScrollCellToTop(scrollToTop: Bool) {
+        if let listener = listener {
+            if let cell = self.superview?.superview  {
+                if cell.isKindOfClass(CollectionCell) {
+                    listener.scrollCellToTop(cell as! CollectionCell)
+                }
+            }
+        }
+    }
+    
     
     //MARK: Animations and Effects
     func updateSlider(change: CGPoint) {
@@ -121,6 +164,7 @@ class CityView: UIView {
             imageContainer_trailingMargin.constant = max(0, imageContainer_trailingMargin.constant - (change.x - previousPoint.x))
         }
         dimmingView.alpha = imageContainer_trailingMargin.constant / (bounds.width/2)
+        likeButton.alpha = 1.0 - imageContainer_trailingMargin.constant / (bounds.width/2)
     }
     
     func closeSlider() {
@@ -128,6 +172,7 @@ class CityView: UIView {
         UIView.animateWithDuration(0.3) { () -> Void in
             self.imageContainer_trailingMargin.constant = 0
             self.dimmingView.alpha = 0.0
+            self.likeButton.alpha = 1.0
             self.layoutIfNeeded()
         }
     }
@@ -136,10 +181,11 @@ class CityView: UIView {
         UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.imageContainer_trailingMargin.constant = self.bounds.width/2
             self.dimmingView.alpha = 1.0
+            self.likeButton.alpha = 0.0
             self.layoutIfNeeded()
             }) { (finished) -> Void in
                 if finished {
-                    self.applyGradientToView(self.dimmingView)
+                    self.shouldScrollCellToTop(self.imageContainer_trailingMargin.constant == self.bounds.width/2)
                 }
         }
     }
@@ -164,20 +210,6 @@ class CityView: UIView {
     }
     
     
-    func applyGradientToView(aView: UIView) {
-        if let gradient = self.gradient {
-            gradient.removeFromSuperlayer()
-        }
-        let gradient = CAGradientLayer()
-        gradient.frame = self.bounds
-        gradient.colors = [ UIColor(white: 0.0, alpha: 0.0).CGColor, UIColor(white: 0.0, alpha: 0.7).CGColor]
-        gradient.startPoint = CGPointMake(0.25, 1.0)
-        gradient.endPoint = CGPointMake(0.5, 1.0)
-        aView.layer.addSublayer(gradient)
-        self.gradient = gradient
-        self.dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.3)
-    }
-    
     func animateFontSizeChange(small: Bool) {
         UIView.beginAnimations(nil, context: nil)
         nameLabel.transform = small ? CGAffineTransformMakeScale(0.7,0.7) : CGAffineTransformIdentity
@@ -192,7 +224,6 @@ extension CityView: UIGestureRecognizerDelegate {
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-    
     
 }
 
@@ -209,7 +240,6 @@ extension CityView: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("landmark", forIndexPath: indexPath)
-        
         cell.textLabel?.text = city!.landmarks[indexPath.row]
         cell.textLabel?.font = UIFont(name: "Helvetica", size: 11.0)
         cell.textLabel?.textColor = UIColor.lightGrayColor()

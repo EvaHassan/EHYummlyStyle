@@ -37,6 +37,14 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJw-Ny-NYw" userLabel="top masking View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Jp-K2-RZy" userLabel="bottom masking View">
+                                <rect key="frame" x="0.0" y="398" width="600" height="138"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="crk-Jf-2jz">
                                 <rect key="frame" x="-630" y="0.0" width="1230" height="54"/>
                                 <subviews>
@@ -247,13 +255,19 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="U6b-0V-9YD" firstAttribute="top" secondItem="kn0-4n-JMe" secondAttribute="bottom" id="2dJ-46-9bN"/>
+                            <constraint firstItem="VJw-Ny-NYw" firstAttribute="top" secondItem="2xn-eP-6F3" secondAttribute="bottom" id="8nS-3p-rt9"/>
+                            <constraint firstItem="U6b-0V-9YD" firstAttribute="top" secondItem="0Jp-K2-RZy" secondAttribute="bottom" id="9IF-6e-qmD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="crk-Jf-2jz" secondAttribute="trailing" constant="-20" id="AB5-Ls-DGA"/>
+                            <constraint firstItem="VJw-Ny-NYw" firstAttribute="leading" secondItem="deN-Ih-aBg" secondAttribute="leadingMargin" constant="-20" id="AHR-1Y-uiQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VJw-Ny-NYw" secondAttribute="trailing" constant="-20" id="E09-Rx-CB8"/>
+                            <constraint firstItem="kn0-4n-JMe" firstAttribute="top" secondItem="VJw-Ny-NYw" secondAttribute="bottom" constant="-30" id="GaK-8t-9un"/>
                             <constraint firstItem="Cne-x0-36l" firstAttribute="top" secondItem="crk-Jf-2jz" secondAttribute="bottom" id="GkF-WJ-Mcl"/>
                             <constraint firstItem="VkB-Mf-Gdt" firstAttribute="top" secondItem="2xn-eP-6F3" secondAttribute="bottom" constant="5" id="Iky-0n-e7y"/>
                             <constraint firstItem="FGZ-1g-PHB" firstAttribute="width" secondItem="deN-Ih-aBg" secondAttribute="width" id="MlI-hd-gYM"/>
                             <constraint firstItem="1vY-pZ-V1m" firstAttribute="top" secondItem="crk-Jf-2jz" secondAttribute="bottom" id="O7x-NV-O0I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kn0-4n-JMe" secondAttribute="trailing" constant="-20" id="Pb6-JO-gv2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Cne-x0-36l" secondAttribute="trailing" constant="-20" id="Sgn-LD-lEh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Jp-K2-RZy" secondAttribute="trailing" constant="-20" id="V7n-Yr-4pn"/>
                             <constraint firstItem="crk-Jf-2jz" firstAttribute="width" secondItem="deN-Ih-aBg" secondAttribute="width" multiplier="2" constant="30" id="agn-EK-hZK"/>
                             <constraint firstItem="kn0-4n-JMe" firstAttribute="top" secondItem="1vY-pZ-V1m" secondAttribute="bottom" id="cmM-Cf-Aw4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VkB-Mf-Gdt" secondAttribute="trailing" constant="-20" id="dzn-h9-WaP"/>
@@ -263,7 +277,9 @@
                             <constraint firstItem="1vY-pZ-V1m" firstAttribute="height" secondItem="VkB-Mf-Gdt" secondAttribute="height" id="q2f-XJ-AXS"/>
                             <constraint firstItem="1vY-pZ-V1m" firstAttribute="height" secondItem="crk-Jf-2jz" secondAttribute="height" constant="-10" id="qTT-tJ-FCd"/>
                             <constraint firstItem="Cne-x0-36l" firstAttribute="leading" secondItem="deN-Ih-aBg" secondAttribute="leadingMargin" constant="-20" id="qro-mQ-ft4"/>
+                            <constraint firstItem="0Jp-K2-RZy" firstAttribute="leading" secondItem="deN-Ih-aBg" secondAttribute="leadingMargin" constant="-20" id="sWC-Wa-2KW"/>
                             <constraint firstItem="1vY-pZ-V1m" firstAttribute="leading" secondItem="deN-Ih-aBg" secondAttribute="leadingMargin" constant="-20" id="tYt-l5-wz1"/>
+                            <constraint firstItem="0Jp-K2-RZy" firstAttribute="top" secondItem="VJw-Ny-NYw" secondAttribute="bottom" constant="270" id="v2e-Ot-P52"/>
                             <constraint firstItem="kn0-4n-JMe" firstAttribute="leading" secondItem="deN-Ih-aBg" secondAttribute="leadingMargin" constant="-20" id="zFy-nf-Kt8"/>
                             <constraint firstItem="VkB-Mf-Gdt" firstAttribute="leading" secondItem="deN-Ih-aBg" secondAttribute="leadingMargin" constant="-20" id="zOO-Sa-qhP"/>
                         </constraints>
@@ -272,6 +288,7 @@
                         <nil key="title"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomMaskView" destination="0Jp-K2-RZy" id="tUD-S6-VXe"/>
                         <outlet property="buttonsContainerView" destination="VkB-Mf-Gdt" id="aU1-pI-apb"/>
                         <outlet property="buttonsContainer_topMargin" destination="Iky-0n-e7y" id="clt-Ff-WJz"/>
                         <outlet property="collectionView" destination="kn0-4n-JMe" id="4GU-l8-puL"/>
@@ -285,6 +302,7 @@
                         <outlet property="searchBarContainer" destination="crk-Jf-2jz" id="vEX-kV-akd"/>
                         <outlet property="searchBarContainer_trailingMargin" destination="AB5-Ls-DGA" id="nSB-jg-Tto"/>
                         <outlet property="searchButton" destination="rXt-hp-kpW" id="pSc-GA-B6r"/>
+                        <outlet property="topMaskView" destination="VJw-Ny-NYw" id="Zud-Lj-nJe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBe-ii-3d9" userLabel="First Responder" sceneMemberID="firstResponder"/>

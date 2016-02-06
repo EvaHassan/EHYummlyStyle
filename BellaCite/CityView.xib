@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CityView" customModule="BellaCite" customModuleProvider="target">
             <connections>
+                <outlet property="bottomGradientDimmingView" destination="nQP-XX-zZG" id="gzG-Lv-x98"/>
                 <outlet property="dimmingView" destination="nA3-YY-i5P" id="eZJ-Wb-DOg"/>
                 <outlet property="imageContainer_trailingMargin" destination="kwU-Vh-z2b" id="xUj-Fx-A5q"/>
                 <outlet property="imageView" destination="faJ-33-8YF" id="6gZ-TR-2qo"/>
@@ -35,6 +36,10 @@
                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="faJ-33-8YF">
                             <rect key="frame" x="-100" y="0.0" width="800" height="600"/>
                         </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQP-XX-zZG" userLabel="bottom gradient dimming view">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nA3-YY-i5P" userLabel="dimmingView">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <subviews>
@@ -54,7 +59,7 @@
                                 </mask>
                             </variation>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUM-8p-MTa">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUM-8p-MTa" userLabel="touchView">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
@@ -88,24 +93,34 @@
                         <constraint firstItem="faJ-33-8YF" firstAttribute="centerX" secondItem="pvX-WI-Fks" secondAttribute="centerX" id="WTB-j5-bNT"/>
                         <constraint firstItem="nA3-YY-i5P" firstAttribute="leading" secondItem="pvX-WI-Fks" secondAttribute="leading" id="WbY-Dk-iYj"/>
                         <constraint firstItem="nA3-YY-i5P" firstAttribute="top" secondItem="pvX-WI-Fks" secondAttribute="top" id="bGF-fD-G1r"/>
+                        <constraint firstAttribute="trailing" secondItem="nA3-YY-i5P" secondAttribute="trailing" id="eUj-nw-Hos"/>
+                        <constraint firstAttribute="trailing" secondItem="nA3-YY-i5P" secondAttribute="trailing" id="hds-7j-jRE"/>
                         <constraint firstAttribute="trailing" secondItem="lqp-Wq-y7J" secondAttribute="trailing" constant="20" id="nMu-AQ-Thg"/>
-                        <constraint firstAttribute="trailing" secondItem="nA3-YY-i5P" secondAttribute="trailing" id="tev-0z-jar"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="hds-7j-jRE"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="nQP-XX-zZG" secondAttribute="trailing" id="11W-jC-40I"/>
                 <constraint firstItem="pvX-WI-Fks" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2iu-1R-Fhb"/>
                 <constraint firstItem="8fj-gZ-urN" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5:1" id="7he-S7-Vos"/>
                 <constraint firstItem="rUM-8p-MTa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CFX-Vr-2Ww"/>
                 <constraint firstItem="rUM-8p-MTa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DRY-rB-Nnz"/>
+                <constraint firstItem="nQP-XX-zZG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Jhz-LA-IoZ"/>
                 <constraint firstItem="8fj-gZ-urN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RIi-wh-5a4"/>
                 <constraint firstAttribute="trailing" secondItem="8fj-gZ-urN" secondAttribute="trailing" id="RvP-5X-iRi"/>
-                <constraint firstAttribute="trailing" secondItem="rUM-8p-MTa" secondAttribute="trailing" id="VVC-83-9LO"/>
+                <constraint firstAttribute="bottom" secondItem="nQP-XX-zZG" secondAttribute="bottom" id="V4a-79-99V"/>
                 <constraint firstAttribute="bottom" secondItem="rUM-8p-MTa" secondAttribute="bottom" id="ZUk-f9-nz4"/>
                 <constraint firstAttribute="bottom" secondItem="8fj-gZ-urN" secondAttribute="bottom" id="gGb-cA-mOv"/>
                 <constraint firstAttribute="bottom" secondItem="pvX-WI-Fks" secondAttribute="bottom" id="kiK-xZ-ztR"/>
                 <constraint firstAttribute="trailing" secondItem="pvX-WI-Fks" secondAttribute="trailing" id="kwU-Vh-z2b"/>
+                <constraint firstAttribute="trailing" secondItem="rUM-8p-MTa" secondAttribute="trailing" id="mdI-oy-DiQ"/>
+                <constraint firstItem="nQP-XX-zZG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rvs-Cq-0LP"/>
                 <constraint firstItem="pvX-WI-Fks" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wwM-8w-Zmp"/>
             </constraints>
             <point key="canvasLocation" x="239" y="100"/>
