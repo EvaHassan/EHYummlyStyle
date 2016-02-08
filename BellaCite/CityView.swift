@@ -15,6 +15,12 @@ protocol DisableCollectionViewScrolling {
     func shouldClearTopAndBottomMaskViews(clear: Bool)
 }
 
+protocol CityViewGeneralDelegate {
+    func sliderWillOpen()
+    func sliderWillClose()
+    func sliderDidSlide(alpha: CGFloat)
+}
+
 class CityView: UIView {
     let BACKGROUNDGRAY = UIColor(red: 245.0/255, green: 245.0/255, blue: 245.0/255, alpha: 1.0)
     
@@ -27,12 +33,24 @@ class CityView: UIView {
     @IBOutlet weak var bottomGradientDimmingView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var likeButton: CustomLikeButton!
+    @IBOutlet weak var listButton: ListButton!
+    @IBOutlet weak var notesButton: NotesButton!
     @IBOutlet var view: UIView!
     @IBOutlet weak var showTableButton: UIButton!
+    
+    
     @IBOutlet var panGestureRecognizer: UIPanGestureRecognizer!
     
     var gradient: CAGradientLayer?
     var listener : DisableCollectionViewScrolling?
+    var generalDelegate: CityViewGeneralDelegate?
+    var notesButtonMaskForNormalState : CAShapeLayer!
+    var notesButtonMaskForSelectedState : CAShapeLayer!
+    var listButtonMaskForNormalState : CAShapeLayer!
+    var listButtonMaskForSelectedState : CAShapeLayer!
+    
+    @IBOutlet weak var listButtonSelected: UIButton!
+    
     
     var city: City?  {
         didSet {
@@ -63,6 +81,7 @@ class CityView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         applyGradientToView(dimmingView)
+        //setupNotesButton()
     }
     
     func loadViewFromNib() {
@@ -71,10 +90,29 @@ class CityView: UIView {
         newView.frame = self.bounds
         view = newView
         self.addSubview(newView)
-        likeButton.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        likeButton.addTarget(self, action: "likeButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         configureTableView()
         dimmingView.alpha = 0.0
+        setupNotesButton()
+        setupListButton()
     }
+    
+    private func setupNotesButton() {
+        notesButton.selected = true
+        notesButton.fillViewWithNotesIcon()
+        notesButton.alpha = 0.0
+        //
+        notesButton.configureInitialState()
+    }
+    
+    
+    private func setupListButton() {
+        listButton.selected = false
+        listButton.fillViewWithListIcon()
+        listButton.alpha = 0.0
+        listButton.configureInitialState()
+    }
+    
 
     func configureTableView() {
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "landmark")
@@ -102,13 +140,36 @@ class CityView: UIView {
     @IBAction func handleTapToCloseSlider(sender: UITapGestureRecognizer) {
         closeSlider()
         touchView.removeGestureRecognizer(sender)
-        print("*********")
     }
     
     
-    @IBAction func buttonPressed(sender: AnyObject) {
+    @IBAction func likeButtonPressed(sender: AnyObject) {
         updateCity()
         animateLikeButtonChanges()
+        
+    }
+    
+    @IBAction func notesButtonPressed(sender: UIButton) {
+        if !sender.selected {
+            notesButton.selected = !notesButton.selected
+            listButton.selected = !notesButton.selected
+            notesButton.selected == true ? notesButton.animateUP() : notesButton.animateDown()
+            listButton.selected == true ? listButton.animateUP() : listButton.animateDown()
+        } else {
+            sender.showBloatAnimation()
+        }
+        
+    }
+    
+    @IBAction func listButtonPressed(sender: UIButton) {
+        if !sender.selected {
+            listButton.selected = !listButton.selected
+            notesButton.selected = !listButton.selected
+            notesButton.selected == true ? notesButton.animateUP() : notesButton.animateDown()
+            listButton.selected == true ? listButton.animateUP() : listButton.animateDown()
+        } else {
+            sender.showBloatAnimation()
+        }
         
     }
     
@@ -174,15 +235,25 @@ class CityView: UIView {
             imageContainer_trailingMargin.constant = max(0, imageContainer_trailingMargin.constant - (change.x - previousPoint.x))
         }
         dimmingView.alpha = imageContainer_trailingMargin.constant / (bounds.width/2)
+        notesButton.alpha = imageContainer_trailingMargin.constant / (bounds.width/2)
+        listButton.alpha = imageContainer_trailingMargin.constant / (bounds.width/2)
         likeButton.alpha = 1.0 - imageContainer_trailingMargin.constant / (bounds.width/2)
+        if let generalDelegate = generalDelegate {
+            generalDelegate.sliderDidSlide(1.0 - imageContainer_trailingMargin.constant / (bounds.width/2))
+        }
     }
     
     func closeSlider() {
+        if let generalDelegate = generalDelegate {
+            generalDelegate.sliderWillClose()
+        }
         self.layoutIfNeeded()
         UIView.animateWithDuration(0.25, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.imageContainer_trailingMargin.constant = 0
             self.dimmingView.alpha = 0.0
             self.likeButton.alpha = 1.0
+            self.notesButton.alpha = 0.0
+            self.listButton.alpha = 0.0
             self.layoutIfNeeded()
             }) { (finished) -> Void in
                 if finished {
@@ -193,11 +264,16 @@ class CityView: UIView {
         }
     }
     func openSlider() {
+        if let generalDelegate = generalDelegate {
+            generalDelegate.sliderWillOpen()
+        }
         self.layoutIfNeeded()
         UIView.animateWithDuration(0.25, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.imageContainer_trailingMargin.constant = self.bounds.width/2
             self.dimmingView.alpha = 1.0
             self.likeButton.alpha = 0.0
+            self.notesButton.alpha = 1.0
+            self.listButton.alpha = 1.0
             self.layoutIfNeeded()
             }) { (finished) -> Void in
                 if finished {

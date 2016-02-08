@@ -13,13 +13,11 @@ class CitiesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var dimmingView: UIView!
-    @IBOutlet weak var imageview: UIImageView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var menuButton: UIButton!
-    @IBOutlet weak var listButton: UIButton!
+    @IBOutlet weak var notesButton: UIButton!
     @IBOutlet weak var topMaskView: UIView!
     @IBOutlet weak var bottomMaskView: UIView!
-
     
     var imageView : UIImageView?
     var originalCenters :[CGFloat]?
@@ -27,9 +25,9 @@ class CitiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        searchButton.fillViewWithSearchIcon()
-        menuButton.fillViewWithMenuIcon()
-        listButton.fillViewWithListIcon()
+        setupMenuButton()
+        setupNotesButton()
+        setupSearchButton()
         setupSearchBar()
         
     }
@@ -48,30 +46,58 @@ class CitiesViewController: UIViewController {
         setupCollection()
     }
     
-    //MARK: Views Setup
-    func setupSearchBar() {
-        
+    //MARK: Initializations
+    private func setupSearchBar() {
         searchBar.setImage(UIImage(), forSearchBarIcon: UISearchBarIcon.Search, state: .Normal)
-        // set controller as observer to keyboard notification when searchBar is a first responder
-      //  NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardUp:", name: UIKeyboardWillShowNotification, object: nil)
+        // TODO change font/fint size/ text color
     }
     
-    func setupCollection() {
+    private func setupCollection() {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         var size = layout.itemSize
         size.width = view.bounds.width
         layout.itemSize = size
         collectionView.collectionViewLayout = layout
+    }
+    
+    private func setupNotesButton() {
+        let aView = UIView(frame: notesButton.bounds)
+        aView.backgroundColor = UIColor.clearColor()
+        aView.fillViewWithNotesIcon()
+        let mask  = aView.circleShapeLayer(notesButton.bounds)
         
-        // allow a fullcell size bottom insets in the collection to help scroll a cell with an open slider to the top
-        // of the visible rectangle
-    /*    var rect = self.collectionView.frame;
-        rect.size.height = rect.size.height + size.height;
-        self.collectionView.frame = rect;
-        var insets: UIEdgeInsets = collectionView.contentInset;
-        insets.bottom = size.height;
-        collectionView.contentInset = insets; */
+        // get bitmap for the drawing
+        UIGraphicsBeginImageContextWithOptions(notesButton.bounds.size, true, 0.0);
+        aView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
         
+        // set Button's image
+        notesButton.setImage(image, forState: .Normal)
+        notesButton.imageView?.layer.mask = mask
+    }
+    
+    
+    
+    private func setupMenuButton() {
+        let aView = UIView(frame: notesButton.bounds)
+        aView.backgroundColor = UIColor.clearColor()
+        aView.fillViewWithMenuIcon()
+        let mask  = aView.circleShapeLayer(notesButton.bounds)
+        
+        // get bitmap for the drawing
+        UIGraphicsBeginImageContextWithOptions(notesButton.bounds.size, true, 0.0);
+        aView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        // set Button's image
+        menuButton.setImage(image, forState: .Normal)
+        menuButton.imageView?.layer.mask = mask
+    }
+    
+    private func setupSearchButton() {
+        searchButton.fillViewWithSearchIcon()
     }
     
     //MARK: - IBActions
@@ -246,9 +272,6 @@ extension CitiesViewController: UICollectionViewDelegate {
             vc.city = city
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
-        
     }
 }
 
@@ -267,6 +290,7 @@ extension CitiesViewController: UIScrollViewDelegate {
 }
 
 extension CitiesViewController: DisableCollectionViewScrolling {
+    //MARK: CityView Delegate Methods
     func collectionViewScrollingEnabled(scrollEnabled: Bool) {
         collectionView.scrollEnabled = scrollEnabled
     }

@@ -16,7 +16,6 @@
 		0224097C1C64F23A00454996 /* BellaCiteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0224097B1C64F23A00454996 /* BellaCiteUITests.swift */; };
 		0224098C1C64F2AC00454996 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0224098A1C64F2AC00454996 /* cities.plist */; };
 		0224098D1C64F2AC00454996 /* CitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0224098B1C64F2AC00454996 /* CitiesModel.swift */; };
-		022409901C64F2DE00454996 /* UIView+Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0224098F1C64F2DE00454996 /* UIView+Icons.swift */; };
 		022409921C64F2F800454996 /* Int+NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022409911C64F2F800454996 /* Int+NumberFormatter.swift */; };
 		022409951C64F35300454996 /* IMG3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 022409941C64F35300454996 /* IMG3.jpg */; };
 		022409971C64F35F00454996 /* IMG1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 022409961C64F35F00454996 /* IMG1.jpg */; };
@@ -31,6 +30,9 @@
 		022409AD1C64F51600454996 /* CityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 022409AC1C64F51600454996 /* CityView.xib */; };
 		022409AF1C64F54D00454996 /* CustomLikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022409AE1C64F54D00454996 /* CustomLikeButton.swift */; };
 		022409B11C64F60800454996 /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022409B01C64F60800454996 /* CityViewController.swift */; };
+		022409B31C67271B00454996 /* UIView+Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022409B21C67271B00454996 /* UIView+Icons.swift */; };
+		022409B91C67ACEE00454996 /* UIButton+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022409B81C67ACEE00454996 /* UIButton+Animation.swift */; };
+		022409BD1C681E0700454996 /* UIView+Icons1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022409BC1C681E0700454996 /* UIView+Icons1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +68,6 @@
 		0224097D1C64F23A00454996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0224098A1C64F2AC00454996 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
 		0224098B1C64F2AC00454996 /* CitiesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesModel.swift; sourceTree = "<group>"; };
-		0224098F1C64F2DE00454996 /* UIView+Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Icons.swift"; sourceTree = "<group>"; };
 		022409911C64F2F800454996 /* Int+NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+NumberFormatter.swift"; sourceTree = "<group>"; };
 		022409941C64F35300454996 /* IMG3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG3.jpg; sourceTree = "<group>"; };
 		022409961C64F35F00454996 /* IMG1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG1.jpg; sourceTree = "<group>"; };
@@ -81,6 +82,9 @@
 		022409AC1C64F51600454996 /* CityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityView.xib; sourceTree = "<group>"; };
 		022409AE1C64F54D00454996 /* CustomLikeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLikeButton.swift; sourceTree = "<group>"; };
 		022409B01C64F60800454996 /* CityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
+		022409B21C67271B00454996 /* UIView+Icons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Icons.swift"; sourceTree = "<group>"; };
+		022409B81C67ACEE00454996 /* UIButton+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Animation.swift"; sourceTree = "<group>"; };
+		022409BC1C681E0700454996 /* UIView+Icons1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Icons1.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				022409911C64F2F800454996 /* Int+NumberFormatter.swift */,
-				0224098F1C64F2DE00454996 /* UIView+Icons.swift */,
+				022409B21C67271B00454996 /* UIView+Icons.swift */,
+				022409B81C67ACEE00454996 /* UIButton+Animation.swift */,
+				022409BC1C681E0700454996 /* UIView+Icons1.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -342,9 +348,11 @@
 			files = (
 				0224095E1C64F23900454996 /* ViewController.swift in Sources */,
 				022409B11C64F60800454996 /* CityViewController.swift in Sources */,
-				022409901C64F2DE00454996 /* UIView+Icons.swift in Sources */,
+				022409B31C67271B00454996 /* UIView+Icons.swift in Sources */,
+				022409BD1C681E0700454996 /* UIView+Icons1.swift in Sources */,
 				022409921C64F2F800454996 /* Int+NumberFormatter.swift in Sources */,
 				022409A71C64F4EA00454996 /* CitiesViewController.swift in Sources */,
+				022409B91C67ACEE00454996 /* UIButton+Animation.swift in Sources */,
 				022409AF1C64F54D00454996 /* CustomLikeButton.swift in Sources */,
 				022409A91C64F4FD00454996 /* CollectionCell.swift in Sources */,
 				022409AB1C64F50800454996 /* CityView.swift in Sources */,

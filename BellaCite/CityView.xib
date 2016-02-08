@@ -14,7 +14,9 @@
                 <outlet property="imageView" destination="faJ-33-8YF" id="6gZ-TR-2qo"/>
                 <outlet property="imageView_centerY" destination="Tlb-Bv-dfZ" id="nj1-6t-Pao"/>
                 <outlet property="likeButton" destination="lqp-Wq-y7J" id="ueP-8B-fjL"/>
+                <outlet property="listButton" destination="OeR-fP-Gqn" id="zjN-w8-OaL"/>
                 <outlet property="nameLabel" destination="LS6-63-JAL" id="NCO-q8-DAS"/>
+                <outlet property="notesButton" destination="5V7-Ia-Xwu" id="ORw-bo-W1T"/>
                 <outlet property="panGestureRecognizer" destination="xrI-4k-kAz" id="igP-Xh-MVh"/>
                 <outlet property="showTableButton" destination="ihU-Sa-w8x" id="iHu-6b-Rqg"/>
                 <outlet property="tableView" destination="8fj-gZ-urN" id="ddf-db-AwR"/>
@@ -44,15 +46,17 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nA3-YY-i5P" userLabel="dimmingView">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihU-Sa-w8x">
-                                    <rect key="frame" x="546" y="285" width="46" height="30"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihU-Sa-w8x">
+                                    <rect key="frame" x="552" y="285" width="46" height="30"/>
                                     <state key="normal" title="Button"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <gestureRecognizers/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="ihU-Sa-w8x" secondAttribute="trailing" constant="2" id="08V-87-fuo"/>
                                 <constraint firstAttribute="height" constant="1600" id="B9s-Ou-HQW"/>
+                                <constraint firstItem="ihU-Sa-w8x" firstAttribute="centerY" secondItem="nA3-YY-i5P" secondAttribute="centerY" id="Hsu-ZL-veJ"/>
                                 <constraint firstAttribute="height" constant="200" id="KUB-ig-mIv"/>
                             </constraints>
                             <variation key="default">
@@ -71,7 +75,7 @@
                             </connections>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LS6-63-JAL">
-                            <rect key="frame" x="15" y="553.5" width="506" height="21.5"/>
+                            <rect key="frame" x="15" y="553" width="506" height="21.5"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -84,24 +88,57 @@
                             </constraints>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeR-fP-Gqn" userLabel="listButton" customClass="ListButton" customModule="BellaCite" customModuleProvider="target">
+                            <rect key="frame" x="545" y="30" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="36" id="Rgg-aX-jge"/>
+                                <constraint firstAttribute="width" constant="40" id="YzB-5T-kTo"/>
+                                <constraint firstAttribute="height" constant="40" id="tI3-Zs-u7J"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Rgg-aX-jge"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="listButtonPressed:" destination="-1" eventType="touchUpInside" id="LBc-Bs-njD"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V7-Ia-Xwu" customClass="NotesButton" customModule="BellaCite" customModuleProvider="target">
+                            <rect key="frame" x="545" y="75" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="M4h-Ol-6Qc"/>
+                                <constraint firstAttribute="width" constant="40" id="aA3-dr-YhC"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="notesButtonPressed:" destination="-1" eventType="touchUpInside" id="Dc9-NB-opa"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="nA3-YY-i5P" secondAttribute="bottom" id="3Ph-QK-h0o"/>
                         <constraint firstAttribute="bottom" secondItem="nA3-YY-i5P" secondAttribute="bottom" id="4oW-7t-kJt"/>
                         <constraint firstAttribute="bottom" secondItem="LS6-63-JAL" secondAttribute="bottom" constant="25" id="5d6-TA-0p1"/>
+                        <constraint firstAttribute="trailing" secondItem="OeR-fP-Gqn" secondAttribute="trailing" constant="15" id="BKS-s8-aaZ"/>
                         <constraint firstItem="nA3-YY-i5P" firstAttribute="centerY" secondItem="pvX-WI-Fks" secondAttribute="centerY" id="BYk-pk-uSh"/>
+                        <constraint firstItem="5V7-Ia-Xwu" firstAttribute="leading" secondItem="OeR-fP-Gqn" secondAttribute="leading" id="Dk5-n2-Ohz"/>
                         <constraint firstItem="LS6-63-JAL" firstAttribute="leading" secondItem="pvX-WI-Fks" secondAttribute="leading" constant="15" id="EsB-EV-Qgw"/>
                         <constraint firstAttribute="bottom" secondItem="lqp-Wq-y7J" secondAttribute="bottom" constant="15" id="LOh-s5-lle"/>
                         <constraint firstItem="lqp-Wq-y7J" firstAttribute="leading" secondItem="LS6-63-JAL" secondAttribute="trailing" constant="15" id="LUe-I9-Jzm"/>
                         <constraint firstItem="faJ-33-8YF" firstAttribute="centerY" secondItem="pvX-WI-Fks" secondAttribute="centerY" id="Tlb-Bv-dfZ"/>
+                        <constraint firstItem="OeR-fP-Gqn" firstAttribute="top" secondItem="pvX-WI-Fks" secondAttribute="top" constant="30" id="USo-VP-gkf"/>
                         <constraint firstItem="faJ-33-8YF" firstAttribute="centerX" secondItem="pvX-WI-Fks" secondAttribute="centerX" id="WTB-j5-bNT"/>
                         <constraint firstItem="nA3-YY-i5P" firstAttribute="leading" secondItem="pvX-WI-Fks" secondAttribute="leading" id="WbY-Dk-iYj"/>
                         <constraint firstItem="nA3-YY-i5P" firstAttribute="top" secondItem="pvX-WI-Fks" secondAttribute="top" id="bGF-fD-G1r"/>
                         <constraint firstAttribute="trailing" secondItem="nA3-YY-i5P" secondAttribute="trailing" id="eUj-nw-Hos"/>
                         <constraint firstAttribute="trailing" secondItem="nA3-YY-i5P" secondAttribute="trailing" id="hds-7j-jRE"/>
+                        <constraint firstItem="5V7-Ia-Xwu" firstAttribute="top" secondItem="OeR-fP-Gqn" secondAttribute="bottom" constant="5" id="i5Y-Kh-Spv"/>
+                        <constraint firstItem="5V7-Ia-Xwu" firstAttribute="trailing" secondItem="OeR-fP-Gqn" secondAttribute="trailing" id="mHU-5g-Cgv"/>
                         <constraint firstAttribute="trailing" secondItem="lqp-Wq-y7J" secondAttribute="trailing" constant="20" id="nMu-AQ-Thg"/>
                         <constraint firstItem="nA3-YY-i5P" firstAttribute="top" secondItem="pvX-WI-Fks" secondAttribute="top" id="qBP-4X-r3Z"/>
+                        <constraint firstItem="OeR-fP-Gqn" firstAttribute="centerX" secondItem="pvX-WI-Fks" secondAttribute="centerX" constant="-40" id="vWA-dJ-5Gz"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -109,6 +146,8 @@
                             <exclude reference="BYk-pk-uSh"/>
                             <exclude reference="bGF-fD-G1r"/>
                             <exclude reference="hds-7j-jRE"/>
+                            <exclude reference="vWA-dJ-5Gz"/>
+                            <exclude reference="Dk5-n2-Ohz"/>
                         </mask>
                     </variation>
                 </view>
@@ -131,8 +170,14 @@
                 <constraint firstAttribute="trailing" secondItem="rUM-8p-MTa" secondAttribute="trailing" id="mdI-oy-DiQ"/>
                 <constraint firstItem="nQP-XX-zZG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rvs-Cq-0LP"/>
                 <constraint firstItem="pvX-WI-Fks" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wwM-8w-Zmp"/>
+                <constraint firstItem="OeR-fP-Gqn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-40" id="xHT-eq-Ny2"/>
             </constraints>
-            <point key="canvasLocation" x="239" y="100"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="xHT-eq-Ny2"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="242" y="102"/>
         </view>
         <panGestureRecognizer minimumNumberOfTouches="1" id="xrI-4k-kAz">
             <connections>

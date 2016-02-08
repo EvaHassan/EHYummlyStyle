@@ -201,12 +201,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkB-Mf-Gdt">
                                 <rect key="frame" x="0.0" y="5" width="600" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="al8-cT-GcH">
-                                        <rect key="frame" x="15" y="5" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="al8-cT-GcH">
+                                        <rect key="frame" x="15" y="4" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Jgj-AS-VGw"/>
-                                            <constraint firstAttribute="width" constant="34" id="NIZ-dQ-YEf"/>
-                                            <constraint firstAttribute="height" constant="34" id="Rv6-h2-lef"/>
+                                            <constraint firstAttribute="width" constant="36" id="NIZ-dQ-YEf"/>
+                                            <constraint firstAttribute="height" constant="36" id="Rv6-h2-lef"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -214,14 +214,14 @@
                                             </mask>
                                         </variation>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avi-He-F2U">
-                                        <rect key="frame" x="53" y="4" width="34" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avi-He-F2U">
+                                        <rect key="frame" x="55" y="4" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="NvB-hC-rA6"/>
                                         </constraints>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXt-hp-kpW">
-                                        <rect key="frame" x="91" y="4" width="34" height="36"/>
+                                        <rect key="frame" x="95" y="4" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="320-2m-tqB"/>
                                         </constraints>
@@ -230,7 +230,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="al8-cT-GcH" firstAttribute="centerY" secondItem="VkB-Mf-Gdt" secondAttribute="centerY" id="Jop-TC-nAW"/>
                                     <constraint firstItem="Avi-He-F2U" firstAttribute="centerY" secondItem="VkB-Mf-Gdt" secondAttribute="centerY" id="Lua-Xr-TTc"/>
@@ -242,6 +241,11 @@
                                     <constraint firstItem="Avi-He-F2U" firstAttribute="top" secondItem="rXt-hp-kpW" secondAttribute="top" id="ssl-JM-N2M"/>
                                     <constraint firstItem="rXt-hp-kpW" firstAttribute="leading" secondItem="Avi-He-F2U" secondAttribute="trailing" constant="4" id="tMk-sm-UIF"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ssl-JM-N2M"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view hidden="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJw-Ny-NYw" userLabel="top masking View">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="98"/>
@@ -304,8 +308,8 @@
                         <outlet property="explorationView" destination="1vY-pZ-V1m" id="UlU-my-4G4"/>
                         <outlet property="exploreButton" destination="wiZ-LR-9zC" id="QQI-wF-cQe"/>
                         <outlet property="justForYouButton" destination="Vir-sC-C9X" id="owv-x4-K7E"/>
-                        <outlet property="listButton" destination="Avi-He-F2U" id="TgH-JW-G4Q"/>
                         <outlet property="menuButton" destination="al8-cT-GcH" id="YjQ-8O-Ru6"/>
+                        <outlet property="notesButton" destination="Avi-He-F2U" id="r5S-Mt-3uq"/>
                         <outlet property="searchBar" destination="FGZ-1g-PHB" id="UUQ-Qa-KN8"/>
                         <outlet property="searchBarContainer" destination="crk-Jf-2jz" id="vEX-kV-akd"/>
                         <outlet property="searchBarContainer_trailingMargin" destination="AB5-Ls-DGA" id="nSB-jg-Tto"/>

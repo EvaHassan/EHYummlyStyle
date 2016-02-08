@@ -39,18 +39,6 @@ class CustomLikeButton: UIButton {
     var count = 0 {
         didSet {
             if let smallTextLayer = smallTextLayer {
-             /*   let numbFormatter = NSNumberFormatter()
-                if count < 1000 {
-                    smallTextLayer.string = "\(count)"
-                    return
-                } else if count < 1000000 {
-                    numbFormatter.positiveFormat = "0k"
-                    numbFormatter.multiplier = NSNumber(double: 0.001)
-                } else {
-                    numbFormatter.positiveFormat = "0M"
-                    numbFormatter.multiplier = NSNumber(double: 0.000001)
-                }
-                let countString = numbFormatter.stringFromNumber(count) */
                 smallTextLayer.string = count.format() //  countString
             }
         }
